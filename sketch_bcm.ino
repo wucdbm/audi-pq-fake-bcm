@@ -1,24 +1,26 @@
 #include <CAN.h>
 
-uint8_t payload397[8] = {0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00};
-uint8_t counter397 = 0; // Increments 0 to 15 (lower 4 bits of Byte 1) 0x00 to 0x0F
+uint8_t payload397[8] = { 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00 };
+uint8_t counter397 = 0;  // Increments 0 to 15 (lower 4 bits of Byte 1) 0x00 to 0x0F
 unsigned long last_0x397_tx = 0;
-const unsigned long tx_interval_0x397 = 100; // BCM sends every 100 milliseconds
+const unsigned long tx_interval_0x397 = 100;  // BCM sends every 100 milliseconds
 
-uint8_t payload531[4] = {0xC3, 0x00, 0x00, 0x00};
-uint8_t counter531 = 0x00; // Increments by 0x10 from 0x00 to 0xF0
+uint8_t payload531[4] = { 0xC3, 0x00, 0x00, 0x00 };
+uint8_t counter531 = 0x00;  // Increments by 0x10 from 0x00 to 0xF0
 unsigned long last_0x531_tx = 0;
-const unsigned long tx_interval_0x531 = 50; // BCM sends every 50 milliseconds
+const unsigned long tx_interval_0x531 = 50;  // BCM sends every 50 milliseconds
 
 void setup() {
   Serial.begin(9600);
 
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // Convenience CAN Bus runs at 100 kbps
   if (!CAN.begin(100E3)) {
     Serial.println("Starting CAN failed!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Listening");
@@ -50,9 +52,9 @@ void send_0x397() {
   Serial.print("Send 0x397 # ");
   for (int i = 0; i < sizeof(payload397); i++) {
     CAN.write(payload397[i]);
-      Serial.print(payload397[i] < 16 ? "0" : "");
-      Serial.print(payload397[i], HEX);
-      Serial.print(" ");
+    Serial.print(payload397[i] < 16 ? "0" : "");
+    Serial.print(payload397[i], HEX);
+    Serial.print(" ");
   }
   Serial.println("");
   CAN.endPacket();
@@ -81,9 +83,9 @@ void send_0x531() {
   Serial.print("Send 0x531 # ");
   for (int i = 0; i < sizeof(payload531); i++) {
     CAN.write(payload531[i]);
-      Serial.print(payload531[i] < 16 ? "0" : "");
-      Serial.print(payload531[i], HEX);
-      Serial.print(" ");
+    Serial.print(payload531[i] < 16 ? "0" : "");
+    Serial.print(payload531[i], HEX);
+    Serial.print(" ");
   }
   Serial.println("");
   CAN.endPacket();
