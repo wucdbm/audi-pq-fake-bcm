@@ -11,19 +11,17 @@ unsigned long last_0x531_tx = 0;
 const unsigned long tx_interval_0x531 = 250;  // BCM sends every 50 milliseconds
 
 void setup() {
-  Serial.begin(9600);
+  // Serial.begin(9600);
 
-  while (!Serial)
-    ;
+  // while (!Serial);
 
   // Convenience CAN Bus runs at 100 kbps
   if (!CAN.begin(100E3)) {
-    Serial.println("Starting CAN failed!");
-    while (1)
-      ;
+    // Serial.println("Starting CAN failed!");
+    while (1);
   }
 
-  Serial.println("Listening");
+  // Serial.println("Listening");
 }
 
 void loop() {
@@ -49,14 +47,14 @@ void send_0x397() {
 
   // 3. Send
   CAN.beginPacket(0x397);
-  Serial.print("Send 0x397 # ");
+  // Serial.print("Send 0x397 # ");
   for (int i = 0; i < sizeof(payload397); i++) {
     CAN.write(payload397[i]);
-    Serial.print(payload397[i] < 16 ? "0" : "");
-    Serial.print(payload397[i], HEX);
-    Serial.print(" ");
+    // Serial.print(payload397[i] < 16 ? "0" : "");
+    // Serial.print(payload397[i], HEX);
+    // Serial.print(" ");
   }
-  Serial.println("");
+  // Serial.println("");
   CAN.endPacket();
 
   // 4. Advance and wrap the counter (0-15 loop)
@@ -80,14 +78,14 @@ void send_0x531() {
 
   // 3. Send
   CAN.beginPacket(0x531);
-  Serial.print("Send 0x531 # ");
+  // Serial.print("Send 0x531 # ");
   for (int i = 0; i < sizeof(payload531); i++) {
     CAN.write(payload531[i]);
-    Serial.print(payload531[i] < 16 ? "0" : "");
-    Serial.print(payload531[i], HEX);
-    Serial.print(" ");
+    // Serial.print(payload531[i] < 16 ? "0" : "");
+    // Serial.print(payload531[i], HEX);
+    // Serial.print(" ");
   }
-  Serial.println("");
+  // Serial.println("");
   CAN.endPacket();
 
   // 4. Advance counter by 0x10 (auto-wraps to 0x00 when it exceeds 0xF0)
