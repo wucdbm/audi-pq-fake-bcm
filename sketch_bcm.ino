@@ -3,12 +3,12 @@
 uint8_t payload397[8] = { 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00 };
 uint8_t counter397 = 0;  // Increments 0 to 15 (lower 4 bits of Byte 1) 0x00 to 0x0F
 unsigned long last_0x397_tx = 0;
-const unsigned long tx_interval_0x397 = 98;  // BCM sends every 100 milliseconds
+const unsigned long tx_interval_0x397 = 90;  // BCM sends every 100 milliseconds
 
 uint8_t payload531[4] = { 0xC3, 0x00, 0x00, 0x00 };
 uint8_t counter531 = 0x00;  // Increments by 0x10 from 0x00 to 0xF0
 unsigned long last_0x531_tx = 0;
-const unsigned long tx_interval_0x531 = 49;  // BCM sends every 50 milliseconds
+const unsigned long tx_interval_0x531 = 45;  // BCM sends every 50 milliseconds
 
 void setup() {
   // Serial.begin(9600);
